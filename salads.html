@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salads</title>
+</head>
+<body>
+    <h1>Available Salads:</h1>
+    <ul>
+        {% for salad in salads %}
+            <li>
+                <h2>{{ salad.name }}</h2>
+                <p>Price: ${{ salad.price }}</p>
+                <img src="{{ url_for('static', filename='salad_images/' + salad.image) }}" alt="{{ salad.name }}" style="max-width: 200px;">
+                <form action="/add_to_cart/{{ salad.id }}" method="post">
+                    <button>Add to Cart</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    <p><a href="/">Home</a></p>
+    <p><a href="/logout">Logout</a></p>
+</body>
+</html>
